@@ -1,0 +1,15 @@
+1.man -k <word>, use man man command to find out
+2.cp:/bin/cp wc:/usr/bin/wc, use whereis command to search
+3.w:show who is logged in and what they are doing
+x:a portable, network-transparent window system
+[:check and compare two files
+use find / - executable -name "?" to search
+4.gcc, use readlink /usr/bin/cc
+5.it removes the permission to run as group members when executing the file,
+from slides and class
+6.find -mtime -3, use man find to search
+7.find -type d -mtime -3
+8.18, use whereis find then ls -l /bin
+9.libgamin-1.so.0.1.10, use ls -l -a -t /usr/lib
+10.locale category is defined by the LC_* environment variables, use man locale
+11.

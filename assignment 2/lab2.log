@@ -1,0 +1,76 @@
+cd Desktop
+//change to proper locale
+locale
+export LC_ALL='C'
+locale
+//create a file has the requured sorted words and test different command
+cp /usr/share/dict/words/ words
+sort words
+wget web.cs.ucla.edu/classes/fall15/cs35L/assign/assign2.html
+cat assign2,html | tr -c 'A-Za-z' '[\n*]'
+replace all nono-alphabetic characters to a new line
+cat assign2.html | tr -cs 'A-Za-z' '[\n*]'
+similar to above but s squeezes consecutive non-alphabetic to just one new line
+cat assign2.html | tr -cs 'A-Za-z' '[\n*]' | sort
+print out the same as the previous command, but in alphabetical order
+cat assign2.html | tr -cs 'A-Za-z' '[\n*]' | sort -u
+print out the same as the previos command but no repeated words
+cat assign2.html | tr -cs 'A-Za-z' '[\n*]' | sort -u comm - words
+compare two sorted files and print out three column of comparing result
+column 1:only in html
+column 2:only in words
+column 3:exist in both file
+cat assign2.html | tr -cs 'A-Za-z' '[\n*]' | sort -u | comm -23 - words
+print out the same as the previous command but only the first column
+//get a copy of the required file and check misspelled words
+wget mauimapp.com/moolelo/hwnwdseng.htm
+emacs buildwords
+
+#! /bin/bash
+
+#lines with hawaiian words start with <td>
+grep '<td>' |
+
+#remove html tags
+sed 's/<[^>]*>//g' |
+
+#change upper case to lower
+tr '[:upper:]' '[:lower:]' |
+
+#squeeze multiple blanks to one
+tr -s '[:blank:]' |
+
+#delete starting with space
+sed 's/^[:blank:]//g' |
+
+#change ` to '
+sed 's/`/\x27g' |
+
+#change comma to newline
+sed 's/,/\n/g' |
+
+#change speace to newline
+sed 's/ /\n/g' |
+
+#keep valid characters
+grep "^[pk'mnwlhaeiou]*$" |
+
+#sort
+sort -u
+
+C-X C-S
+C-X C-C
+
+chmod 700 buildwords
+cat hwndseng.htm | ./buildwords > hwords
+tr -cs 'A-Za-z' '[\n*]' < assign2.html | tr '[:upper:]' '[:lower:]' | sort -u |
+ comm -23 - hwords | wc -l
+tr -cs 'A-Za-z' '[\n*]' < assign2.html | tr '[:upper:]' '[:lower:]' | sort -u |
+ comm -23 - words | wc -l
+tr -cs 'A-Za-z' '[\n*]' < hwords | tr '[:upper:]' '[:lower:]' | sort -u | comm
+-23 - hwords | we -l
+
+401 words are misspelled in the webpage according to Hawaiian dictionary
+39 words are misspelled in the webpage according to English dictionary
+words misspelled in English but not Hawaiian, ex. halau and lau
+words misspelled in Hawaiian but not English, ex. able, about, and above

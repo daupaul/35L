@@ -1,0 +1,65 @@
+1.
+mkdir gitroot
+cd gitroot
+git clone git://git.savannah.gnu.org/diffutils.git
+2.
+cd diffutils
+git log > git-log.txt
+3.
+git tag > git-tag.txt
+4.
+git log --grep="maint: quote 'like this'"
+//commit 62ca21c8c1a5aa3488589dcb191a4ef04ae9ed4f
+git show 62ca21c8c1a5aa3488589dcb191a4ef04ae9ed4f > quote-patch.txt
+5.
+git checkout v3.0
+6.
+patch -p1 < quote-patch.txt
+RETURN
+y
+RETURN
+y
+RETURN
+y
+//HACKING, diffutils.texi, and help2man had problem patching
+7.
+git status
+8.
+//use C-h m under vc-diff buffer to learn C-c C-a and C-c C-c\
+9.
+git status
+emacs filename
+C-x v = C-x v u
+git status //check if modified files remain .c file only
+//first compare files with older version
+git diff filename
+//undo changes that are done in comments(analyze, context, ifdef, io, side)
+emacs filename
+C-x v = C-x v u
+//then manually undo the rest of the changes except c code
+emacs filename
+10.
+emacs src/diff.c.rej
+emacs src.diff3.c.rej
+//view the file and manually change the patch
+emacs src/diff.c
+emacs src/diff3.c
+11.
+git clean -f
+12.
+git status
+git diff > quote-3.0-patch.txt
+13.
+./bootstrap
+./configure
+make
+make check
+diff . -
+diff --help //check diffutils
+14.
+//put the former source code into a directory and the new source code into
+another directory
+src/diff -pru diffutils-3.0 diffutils-3.0-patch > quote-3.0-test.txt
+15.
+diff quote-3.0-test.txt quote-3.0-patch.txt
+//the two files are not identical, but they are innocuous

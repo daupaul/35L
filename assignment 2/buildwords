@@ -1,0 +1,12 @@
+#! /bin/bash
+
+grep '<td>' |
+sed 's/<[^>]*>//g' |
+tr '[:upper:]' '[:lower:]' |
+tr -s '[:blank:]' |
+sed 's/^[:blank:]//g' |
+sed 's/`/\x27/g' |
+sed 's/,/\n/g' |
+sed 's/ /\n/g' |
+grep "^[pk'mnwlhaeiou]*$" |
+sort -u

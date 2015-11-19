@@ -1,0 +1,8 @@
+The upper section allows you to view and choose a hostory of commits. The
+leftmost section shows commit messages and merge. The middle section displays
+the author of the commit. The rightmost section tells you the date of the
+commits.
+Below those sections, the left part shows the detail of the selected commit,
+including the changes that were applied.
+To the right of the above section, this part shows the files that have been
+changed due to this selected commit

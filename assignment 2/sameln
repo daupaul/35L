@@ -1,0 +1,45 @@
+#!/bin/bash
+export LC_ALL='C'
+
+dir=$1
+RESULT=`ls -a $dir | sort -f`
+declare -a ARRAY
+let count=0
+for FILE in $RESULT
+do
+	if [ ! -r "$dir/$FILE" ]
+	then
+		echo "$dir/$FILE is not readable."
+
+	elif [ ! -L "$dir/$FILE" ]
+	then
+		if [ -f "$dir/$FILE" ]
+		then
+			ARRAY[$count]="$dir/$FILE"
+			let count=count+1
+		fi
+	fi
+done
+for i in "${ARRAY[@]}"
+do
+	for j in "${ARRAY[@]}"
+	do
+		cmp -s $i $j
+		if [ $? -eq 0 ]
+		then
+			IINODE=`ls -i $i | sed 's/\([0-9]*\).*/\1/g'`
+			JINODE=`ls -i $j | sed 's/\([0-9]*\).*/\1/g'`
+			if [ "$IINODE" -ne "$JINODE" ]
+			then
+				if [[ "$i" != ^'.' ]] && [[ "&j" == ^'.' ]]
+				then
+					rm $i
+					ln $j $i
+				else
+					rm &j
+					ln $i $j
+				fi
+			fi
+		fi
+	done
+done

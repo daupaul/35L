@@ -1,0 +1,22 @@
+//get Coreutils and install it
+wget http://ftp.gnu.org/gnu/coreutils/coreutils-7.6.tar.gz
+tar -xzvf coreutils-7.6.tar.gz
+mkdir ~/coreutilsInstall
+cd coreutils-7.6
+cat INSTALL
+./configure --prefix=/coreutilsInstall
+make
+make install prefix=~/coreutilsInstall
+//reproduce the bug and apply the patch
+cd ~/coreunitsInstall/bin
+./ls -l
+cd ~/coreutils-7.6
+vim patchfile
+patch -p1 < patch_file
+make
+//check and test modified ls
+cd coreutils-7.6/src
+./ls -l
+touch newFile
+touch -t 201410161234 oldfile
+//modified version is correct while installed version is incorrect

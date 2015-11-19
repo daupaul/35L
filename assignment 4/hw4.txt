@@ -1,0 +1,26 @@
+1.
+emacs hw4.txt
+2.
+git checkout v3.0 -b quote
+3.
+patch -p1 < quote-3.0-patch.txt
+4.5.
+emacs filename //open 6 .c files using emacs
+C-x 4 a //add lab4 to changelog
+6.
+git add .
+git commit -m "lab4"
+7.
+git format-patch -1 --stdout > formatted-patch.txt
+8.
+git checkout v3.0 -b partner //Jennifer Lin
+git am < formatted-patch.txt
+./bootstrap
+./configure
+make
+make check
+9.
+make distdir
+10.
+cd ~eggert/src/gnu/emacs
+gitk

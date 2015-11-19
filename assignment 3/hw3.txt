@@ -1,0 +1,8 @@
+1.It removes this line since it is redundant. This is a goto statement and is
+not necessary. Removing it will make the code less confusing.
+2.This format only works for English speaker. When dealing with non-English
+speaker, they might find it difficult to understand this format.
+3.When it is invoked on an empty line, it says 'IndexError' random.choice(seq)
+returns random element from seq. Therefore, if it is empty, it says IndexError.
+4.There will be an error since Python 3 and Python 2 have some differences in
+syntax.

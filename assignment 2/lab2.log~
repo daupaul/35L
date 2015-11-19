@@ -1,0 +1,22 @@
+cd Desktop
+//change to proper locale
+locale
+export LC_ALL='C'
+locale
+//create a file has the requured sorted words and test different command
+cp /usr/share/dict/words/ words
+sort words
+wget web.cs.ucla.edu/classes/fall15/cs35L/assign/assign2.html
+cat assign2,html | tr -c 'A-Za-z' '[\n*]'
+replace all nono-alphabetic characters to a new line
+cat assign2.html | tr -cs 'A-Za-z' '[\n*]'
+similar to above but s squeezes consecutive non-alphabetic to just one new line
+cat assign2.html | tr -cs 'A-Za-z' '[\n*]' | sort
+print out the same as the previous command, but in alphabetical order
+cat assign2.html | tr -cs 'A-Za-z' '[\n*]' | sort -u
+print out the same as the previos command but no repeated words
+cat assign2.html | tr -cs 'A-Za-z' '[\n*]' | sort -u comm - words
+compare two sorted files and print out three column of comparing result
+cat assign2.html | tr -cs 'A-Za-z' '[\n*]' | sort -u | comm -23 - words
+print out the same as the previous command but only the first column
+//get a copy of the required file and

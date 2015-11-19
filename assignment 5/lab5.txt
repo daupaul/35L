@@ -1,0 +1,29 @@
+wget http://cs.ucla.edu/classes/fall15/cs35L/assign/coreutils-with-bug.tar.gz
+tar -zxvf coreutils-with-bug.tar.gz
+cd coreutils-with-bug
+./configure CFLAGS="-g -O0"
+make
+//error: conflicting types for 'futimens, and recipe for target failed
+'utimecmp.o', 'all', and 'all-recursive'.
+wget http://cs.ucla.edu/classes/fall15/cs35L/assign/coreutils.diff
+patch -p0 < coreutils.diff
+./configure CFLAGS="-g -O0"
+make
+//futimens has been changed to coreutils_futimens in the patch file, which
+solves the conflicting problem.
+tmp=$(mktemp -d)
+cd $tmp
+touch -d '1918-11-11 11:00 GMT' wwi-armistice
+touch now
+sleep 1
+touch now1
+TZ=UTCO ~/coreutils-with-bug/src/ls -lt --full-time wwi-armistice now now1
+//use gdb to debug, then use emacs to change the code
+diff -u timespec.h newtimespec.h > lab5.diff
+emacs lab5.diff
+C-x 4 a
+//reproduce the problem in home directory
+//since home directory uses unsigned 32-bit. therefore, when dealing with years
+before 1970, which is a negative number in timestamps, it will become a large
+positive number in unsigned system. That is how we get the problem in home
+directory.

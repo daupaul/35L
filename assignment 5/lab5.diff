@@ -1,0 +1,18 @@
+--- timespec.h	2005-09-21 23:05:39.000000000 -0700
++++ newtimespec.h	2015-10-30 16:39:10.282791000 -0700
+@@ -45,8 +45,13 @@
+ static inline int
+ timespec_cmp (struct timespec a, struct timespec b)
+ {
+-  int diff = a.tv_sec - b.tv_sec;
+-  return diff ? diff : a.tv_nsec - b.tv_nsec;
++  signed long long int diff = (signed long long int)a.tv_sec - (signed long long int)b.tv_sec;
++  if (diff == 0)
++    return 0;
++  else if (diff < 0)
++    return -1;
++  else
++    return 1;
+ }
+ 
+ # if ! HAVE_DECL_NANOSLEEP

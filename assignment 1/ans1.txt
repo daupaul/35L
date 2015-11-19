@@ -1,0 +1,47 @@
+1.man -k <word>, use man man command to find out
+2.cp:/bin/cp wc:/usr/bin/wc, use whereis command to search
+3.w:show who is logged in and what they are doing
+x:a portable, network-transparent window system
+[:check and compare two files
+use find / - executable -name "?" to search
+4.gcc, use readlink /usr/bin/cc
+5.it removes the permission to run as group members when executing the file,
+from slides and class
+6.find -mtime -3, use man find to search
+7.find -type d -mtime -3
+8.18, use whereis find then ls -l /bin
+9.libgamin-1.so.0.1.10, use ls -l -a -t /usr/lib
+10.locale category is defined by the LC_* environment variables, use man locale
+11.buffer-menu-sort sort-columns sort-fields sort-lines sort-numeric-fields
+sort-pages sort-paragraphs sort-regexp-fields tabulated-list-col-sort, use
+C-h a then type sort to search
+12.C-a move to the beginning of the line
+C-b move back one character
+C-c it waits for more keyword
+C-d delete a character
+C-e move to the end of line
+C-f move one character forward
+C-g cancel a command
+C-h help
+C-i tab
+C-j newline and indent
+C-k kill one line after the cursor
+C-l move the page the make cursor centered
+C-m insert new line and move to it
+C-n go to next line
+C-o insert new line but stay still
+C-p go back one line
+C-q insert the next input character
+C-r search backward
+C-s search
+C-t switch character
+C-u begin a numeric argument for the following command
+C-v move down one page
+C-w kill a highlighted region
+C-x it waits for more keywords
+C-y yank
+C-z minimize emacs
+use C-h k then type command to search
+13.it kills a command during execution, use C-h k C-g
+14.it is like paste, use C-h k C-y
+15.dired lets you open the files, while ls -l allows you to view, use C-x d
