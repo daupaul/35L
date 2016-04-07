@@ -1,0 +1,28 @@
+sort --version
+export PATH=/usr/local/cs/bin:$PATH
+od -An -t f -N 20000000 < /dev/urandom | tr -s ' ' '\n' > random.txt
+//remove the first line of the text file
+time -p sort -g --parallel=N random.txt > /dev/null
+
+N=1(1 thread)
+real 60.04
+user 41.97
+sys 4.79
+
+N=2(2 thread)
+real 38.86
+user 42.25
+sys 4.74
+
+N=4(4 thread)
+real 30.05
+user 42.77
+sys 4.24
+
+N=8(8 thread)
+real 25.40
+user 45.12
+sys 4.40
+
+The result shows that as the thread increases, the time sort takes decreases.
+
